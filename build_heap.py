@@ -10,10 +10,10 @@ def build_heap(data):
     # try to achieve  O(n) and not O(n2)
 
     data_len = len(data)
-    min_val = min(data)
-    min_val_index = data.index(min_val)
-    data[0], data[min_val_index] = data[min_val_index], data[0]
-    swaps.append([0, min_val_index]) #O(1)
+    #min_val = min(data)
+    #min_val_index = data.index(min_val)
+    #data[0], data[min_val_index] = data[min_val_index], data[0]
+    #swaps.append([0, min_val_index]) #O(1)
 
     for i in range(data_len):
         if 2*i+1 <= data_len-1:
