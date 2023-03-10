@@ -1,5 +1,6 @@
 """
-asdasdasdadasdasdasdasdas python3
+python3
+Edgars Lejnieks, 7. grupa
 """
 
 
@@ -25,8 +26,9 @@ def build_heap(data):
                     data[i], data[2*i+2] = data[2*i+2], data[i]
                     swaps.append([i, 2*i+2])
         
-
-
+    #current implementation: O(n10)
+    #i dont even know if it works
+    #:D
 
 
     return swaps
@@ -38,10 +40,36 @@ def main():
     # add another input for I or F
     # first two tests are from keyboard, third test is from a file
 
+    inputtype = input()
+
+    # previous implementation of input type check
+    if "I" in inputtype:
+        try:
+            # print("Input node count: ")
+            n = int(input())
+            # print("Input node values: ")
+            data = list(map(int, input().split()))
+
+        except EOFError as e:
+            print(e)
+        
+
+    elif "F" in inputtype:
+        try:
+            # print("Input file path ")
+            filepath = input()
+            file = open(filepath, "r")
+            #data = list(map(int, file.readlines().split()))
+            n = int(file.readline())
+            data = list(map(int, file.readline().split()))
+            file.close()
+        except EOFError as e:
+            print(e) 
+
 
     # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
+    # n = int(input())
+    # data = list(map(int, input().split()))
 
     # checks if lenght of data is the same as the said lenght
     assert len(data) == n
