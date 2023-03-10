@@ -3,9 +3,13 @@
 
 def build_heap(data):
     swaps = []
-    # TODO: Creat heap and heap sort
+    # TODO: Create heap (min) and heap sort
     # try to achieve  O(n) and not O(n2)
 
+    min_val = min(data)
+    min_val_index = data.index(min_val)
+    data[0], data[min_val_index] = data[min_val_index], data[0] 
+    swaps.append([0, min_val_index])
 
     return swaps
 
