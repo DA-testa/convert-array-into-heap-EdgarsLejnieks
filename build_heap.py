@@ -36,7 +36,7 @@ def build_heap(data):
             if min_val == data[2*iter+1]:
                 data[iter], data[2*iter+1] = data[2*iter+1], data[iter]
                 swaps.append([iter, 2*iter+1])
-                debug_swapcounter += 1
+                # debug_swapcounter += 1
                 # print(debug_swapcounter)
                 check = True
                 
@@ -44,7 +44,7 @@ def build_heap(data):
             elif min_val == data[2*iter+2]:
                 data[iter], data[2*iter+2] = data[2*iter+2], data[iter]
                 swaps.append([iter, 2*iter+2])
-                debug_swapcounter += 1
+                # debug_swapcounter += 1
                 # print(debug_swapcounter)
                 check = True
 
