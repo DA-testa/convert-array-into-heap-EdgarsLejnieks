@@ -1,7 +1,5 @@
-"""
-python3
-Edgars Lejnieks, 7. grupa
-"""
+# python3
+# Edgars Lejnieks, 7. grupa
 
 
 def build_heap(data):
@@ -9,26 +7,83 @@ def build_heap(data):
     # TODO: Create heap (min) and heap sort
     # try to achieve  O(n) and not O(n2)
 
-    data_len = len(data)
-    #min_val = min(data)
-    #min_val_index = data.index(min_val)
-    #data[0], data[min_val_index] = data[min_val_index], data[0]
-    #swaps.append([0, min_val_index]) #O(1)
+    # print("stuff is happening")
 
-    for i in range(data_len):
-        if 2*i+1 <= data_len-1:
-            # 𝑎𝑖 < 𝑎2𝑖+1.
-            if data[i] >= data[2*i+1]:
-                data[i], data[2*i+1] = data[2*i+1], data[i]
-                swaps.append([i, 2*i+1])
-        if 2*i+2 <= data_len-1:
-            if data[i] >= data[2*i+2]:
-                    data[i], data[2*i+2] = data[2*i+2], data[i]
-                    swaps.append([i, 2*i+2])
+    data_len = len(data)
+    iter_len = int(data_len/2-1)
+    min_val  = 0
+    check    = True
+    counter  = 0
+
+    while(True):
+        check = False
+        counter += 1
+
+        for iter in range (iter_len, -1, -1):
+            min_val = min(data[iter], data[2*iter+1], data[2*iter+2])
+            if min_val == data[2*iter+1]:
+                data[iter], data[2*iter+1] = data[2*iter+1], data[iter]
+                swaps.append([iter, 2*iter+1])
+                check = True
+                
+
+            elif min_val == data[2*iter+2]:
+                data[iter], data[2*iter+2] = data[2*iter+2], data[iter]
+                swaps.append([iter, 2*iter+2])
+                check = True
+
+        if counter == iter_len:
+            if check == False:
+                break
+            else:
+                counter = 0
+
+    # this do NOT sort the heap... i guess
+    # 2*i+1 - kreisā puse
+    # 2*i+2 - labā puse
+
+    
+    # for i in range(data_len):
+    #     if 2*i+1 <= data_len-1:
+    #         # 𝑎𝑖 < 𝑎2𝑖+1.
+    #         if data[i] >= data[2*i+1]:
+    #             data[i], data[2*i+1] = data[2*i+1], data[i]
+    #             swaps.append([i, 2*i+1])
+    #     if 2*i+2 <= data_len-1:
+    #         if data[i] >= data[2*i+2]:
+    #                 data[i], data[2*i+2] = data[2*i+2], data[i]
+    #                 swaps.append([i, 2*i+2])
         
-    #current implementation: O(n10)
-    #i dont even know if it works
-    #:D
+    #implementation: O(n10)
+
+
+    # pos_of_max = 0
+    # for n, m in enumerate(data):
+    #     if m > pos_of_max:
+    #         pos_of_max = n
+
+    # check = False
+    # while check != True:
+
+    #     for i, j in enumerate(data):
+    #         if pos_of_max == data_len-1:
+    #             check = True
+    #         kreisapuse = 2*i+1
+    #         labapuse = 2*i+2
+    #         if kreisapuse >= data_len:
+    #             break
+    #         if labapuse >= data_len:
+    #             break
+    #         print(i)
+    #         if kreisapuse >= labapuse and data[kreisapuse] < data[pos_of_max]:
+    #             data[i], data[kreisapuse] = data[kreisapuse], data[i]
+    #             check = False
+    #             swaps.append([i, kreisapuse])
+
+    #         if labapuse >= kreisapuse and data[labapuse] < data[pos_of_max]:
+    #             data[i], data[labapuse] = data[labapuse], data[i]
+    #             check = False
+    #             swaps.append([i, labapuse])
 
 
     return swaps
@@ -58,6 +113,8 @@ def main():
         try:
             # print("Input file path ")
             filepath = input()
+            #github is looking for file 04
+            filepath = "tests/" + filepath
             file = open(filepath, "r")
             #data = list(map(int, file.readlines().split()))
             n = int(file.readline())
