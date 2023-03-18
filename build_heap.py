@@ -7,7 +7,7 @@ def build_heap(data):
     # TODO: Create heap (min) and heap sort
     # try to achieve  O(n) and not O(n2)
 
-    print("stuff is happening")
+    #print("stuff is happening")
 
     data_len = len(data)
     #print(data_len)
@@ -20,11 +20,11 @@ def build_heap(data):
     check    = True
     counter  = 0
 
-    # debug_swapcounter = 0
+    debug_swapcounter = 0
 
     #apparently this loop never finishes, and i sure do wonder why :D
     #timeout at 300'000 miliseconds
-    while(True):
+    while(check == True):
         check = False
         counter += 1
 
@@ -38,7 +38,7 @@ def build_heap(data):
             if min_val == data[2*iter+1]:
                 data[iter], data[2*iter+1] = data[2*iter+1], data[iter]
                 swaps.append([iter, 2*iter+1])
-                # debug_swapcounter += 1
+                debug_swapcounter += 1
                 # print(debug_swapcounter)
                 check = True
                 
@@ -46,9 +46,12 @@ def build_heap(data):
             elif min_val == data[2*iter+2]:
                 data[iter], data[2*iter+2] = data[2*iter+2], data[iter]
                 swaps.append([iter, 2*iter+2])
-                # debug_swapcounter += 1
+                debug_swapcounter += 1
                 # print(debug_swapcounter)
                 check = True
+        
+        if debug_swapcounter % 1000 == 0:
+            print(debug_swapcounter)
 
         if counter == iter_len:
             if check == False:
