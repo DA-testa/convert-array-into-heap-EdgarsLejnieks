@@ -12,9 +12,9 @@ def build_heap(data):
     data_len = len(data)
     #print(data_len)
     if data_len % 2 == 0:
-        iter_len = int(data_len/2-2)
+        iter_len = data_len//2-2 #only just now found out about floor division
     else:
-        iter_len = int(data_len/2-1)
+        iter_len = data_len//2-1
     # print(iter_len)
     min_val  = 0
     check    = True
@@ -22,6 +22,8 @@ def build_heap(data):
 
     # debug_swapcounter = 0
 
+    #apparently this loop never finishes, and i sure do wonder why :D
+    #timeout at 300'000 miliseconds
     while(True):
         check = False
         counter += 1
@@ -54,11 +56,6 @@ def build_heap(data):
                 break
             else:
                 counter = 0
-
-    # this do NOT sort the heap... i guess
-    # 2*i+1 - kreisā puse
-    # 2*i+2 - labā puse
-
     
     # for i in range(data_len):
     #     if 2*i+1 <= data_len-1:
@@ -72,49 +69,15 @@ def build_heap(data):
     #                 swaps.append([i, 2*i+2])
         
     #implementation: O(n10)
-
-
-    # pos_of_max = 0
-    # for n, m in enumerate(data):
-    #     if m > pos_of_max:
-    #         pos_of_max = n
-
-    # check = False
-    # while check != True:
-
-    #     for i, j in enumerate(data):
-    #         if pos_of_max == data_len-1:
-    #             check = True
-    #         kreisapuse = 2*i+1
-    #         labapuse = 2*i+2
-    #         if kreisapuse >= data_len:
-    #             break
-    #         if labapuse >= data_len:
-    #             break
-    #         print(i)
-    #         if kreisapuse >= labapuse and data[kreisapuse] < data[pos_of_max]:
-    #             data[i], data[kreisapuse] = data[kreisapuse], data[i]
-    #             check = False
-    #             swaps.append([i, kreisapuse])
-
-    #         if labapuse >= kreisapuse and data[labapuse] < data[pos_of_max]:
-    #             data[i], data[labapuse] = data[labapuse], data[i]
-    #             check = False
-    #             swaps.append([i, labapuse])
-
+    #does not work
 
     return swaps
 
 
 def main():
 
-    # TODO : add input and corresponding checks
-    # add another input for I or F
-    # first two tests are from keyboard, third test is from a file
-
     inputtype = input()
 
-    # previous implementation of input type check
     if "I" in inputtype:
         try:
             # print("Input node count: ")
@@ -133,7 +96,6 @@ def main():
             #github is looking for file 04
             filepath = "tests/" + filepath
             file = open(filepath, "r")
-            #data = list(map(int, file.readlines().split()))
             n = int(file.readline())
             data = list(map(int, file.readline().split()))
             file.close()
